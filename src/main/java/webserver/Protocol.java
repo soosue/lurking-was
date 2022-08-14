@@ -1,11 +1,15 @@
 package webserver;
 
-public enum Protocol {
-    HTTP_1_1("1.1");
+import java.util.Arrays;
 
+public enum Protocol {
+    HTTP_1_1("HTTP", "1.1");
+
+    private final String name;
     private final String version;
 
-    Protocol(String version) {
+    Protocol(String name, String version) {
+        this.name = name;
         this.version = version;
     }
 
@@ -14,13 +18,14 @@ public enum Protocol {
     }
 
     public static Protocol from(String value) {
-        String[] protocolAndVersion = value.split("/");
-        String protocol = protocolAndVersion[0];
-        String version = protocolAndVersion[1];
+        return Arrays.stream(values())
+                .filter(protocol -> protocol.toString().equals(value))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("no protocol likes " + value));
+    }
 
-        if ("HTTP".equals(protocol) && "1.1".equals(version)) {
-            return HTTP_1_1;
-        }
-        throw new IllegalArgumentException("no protocol likes " + value);
+    @Override
+    public String toString() {
+        return String.format("%s/%s", name, version);
     }
 }

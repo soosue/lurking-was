@@ -1,6 +1,7 @@
-package webserver;
+package webserver.request;
 
 import org.springframework.util.Assert;
+import webserver.Protocol;
 
 public class RequestLine {
     private final Method method;

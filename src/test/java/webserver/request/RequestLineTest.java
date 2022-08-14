@@ -1,6 +1,7 @@
-package webserver;
+package webserver.request;
 
 import org.junit.jupiter.api.Test;
+import webserver.Protocol;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
