@@ -1,5 +1,5 @@
 package webserver;
 
 public enum Method {
-    GET
+    GET, POST
 }

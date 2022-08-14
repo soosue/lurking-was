@@ -1,5 +1,7 @@
 package webserver;
 
+import org.springframework.util.Assert;
+
 import java.io.InputStream;
 
 import static webserver.Method.GET;
@@ -20,7 +22,14 @@ public class RequestLine {
 
 
     public static RequestLine from(String line) {
-        return new RequestLine(GET, new Path("/users"), HTTP, new Version("1.1"));
+        Assert.notNull(line, "requestLine is null");
+        String[] parsedLine = line.trim().split("\\s+");
+
+        String[] protocolAndVersion = parsedLine[2].split("/");
+        String protocol = protocolAndVersion[0];
+        String version = protocolAndVersion[1];
+
+        return new RequestLine(Method.valueOf(parsedLine[0]), new Path(parsedLine[1]), Protocol.valueOf(protocol), new Version(version));
     }
 
     public Method getMethod() {
