@@ -32,8 +32,8 @@ class RequestLineTest {
 
         assertThat(req.getMethod()).isEqualTo(Method.GET);
         assertThat(req.getPath()).isNotNull();
-        assertThat(req.getPath().get("name1")).isEqualTo("value1");
-        assertThat(req.getPath().get("name2")).isEqualTo("value2");
+        assertThat(req.getPath().getQueryString("name1")).isEqualTo("value1");
+        assertThat(req.getPath().getQueryString("name2")).isEqualTo("value2");
         assertThat(req.getProtocol()).isEqualTo(Protocol.HTTP_1_1);
         assertThat(req.getVersion()).isEqualTo("1.1");
     }

@@ -3,6 +3,9 @@ package webserver.request;
 import com.google.common.base.Objects;
 import org.springframework.util.Assert;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 public class Path {
     private final String path;
     private final QueryString queryString;
@@ -16,8 +19,8 @@ public class Path {
         this.queryString = splitPath.length > 1 ? QueryString.from(splitPath[1]) : QueryString.empty();
     }
 
-    public String get(String key) {
-        return queryString.get(key);
+    public String getQueryString(String key) {
+        return URLDecoder.decode(queryString.get(key), StandardCharsets.UTF_8);
     }
 
     public String getPath() {
@@ -35,5 +38,18 @@ public class Path {
     @Override
     public int hashCode() {
         return Objects.hashCode(path);
+    }
+
+    @Override
+    public String toString() {
+        return "Path{" +
+                "path='" + path + '\'' +
+                ", queryString=" + queryString +
+                '}';
+    }
+
+    public String lastUri() {
+        int index = path.lastIndexOf("/");
+        return path.substring(index);
     }
 }

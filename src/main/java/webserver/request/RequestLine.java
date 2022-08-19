@@ -8,12 +8,11 @@ public class RequestLine {
     private final Path path;
     private final Protocol protocol;
 
-    private RequestLine(Method method, Path path, Protocol protocol) {
+    public RequestLine(Method method, Path path, Protocol protocol) {
         this.method = method;
         this.path = path;
         this.protocol = protocol;
     }
-
 
     public static RequestLine from(String line) {
         Assert.notNull(line, "requestLine is null");
@@ -36,5 +35,14 @@ public class RequestLine {
 
     public String getVersion() {
         return protocol.getVersion();
+    }
+
+    @Override
+    public String toString() {
+        return "RequestLine{" +
+                "method=" + method +
+                ", path=" + path +
+                ", protocol=" + protocol +
+                '}';
     }
 }
