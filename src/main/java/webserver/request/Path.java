@@ -27,6 +27,19 @@ public class Path {
         return path;
     }
 
+    public String lastUri() {
+        int index = path.lastIndexOf("/");
+        return path.substring(index);
+    }
+
+    public boolean isHtmlRequest() {
+        return lastUri().contains(".html");
+    }
+
+    public boolean startsWith(String path) {
+        return this.path.startsWith(path);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -46,10 +59,5 @@ public class Path {
                 "path='" + path + '\'' +
                 ", queryString=" + queryString +
                 '}';
-    }
-
-    public String lastUri() {
-        int index = path.lastIndexOf("/");
-        return path.substring(index);
     }
 }

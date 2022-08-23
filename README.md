@@ -80,4 +80,16 @@
 - spi라는 패키지의 인터페이스들을 위 클래스가 구현하고 있었다. java service program
 
 
+- builder패턴은 한 번에 만들어서 응답하기에 좋다. 생성자로 했으면 보기 불편했을 것 같음.
+
+
+
+
+
+
+
+
+
+
+
 spring try catch finally에서 resource 닫는 표준 방법 확인해보기

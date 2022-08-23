@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class    QueryString {
+public class QueryString {
     private final Map<String, String> queryString;
 
     private QueryString(Map<String, String> queryString) {
@@ -44,11 +44,7 @@ public class    QueryString {
     }
 
     public String get(String key) {
-        if (queryString.containsKey(key)) {
-            return queryString.get(key);
-        }
-
-        throw new IllegalArgumentException("invalid key : " + key);
+        return queryString.getOrDefault(key, "");
     }
 
     @Override

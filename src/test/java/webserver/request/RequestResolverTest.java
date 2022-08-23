@@ -1,7 +1,5 @@
 package webserver.request;
 
-import org.junit.jupiter.api.DisplayName;
-
 class RequestResolverTest {
     //requestLine을 받아서 처리할 수 있는 Resolver 에게 위임
     //resolver 찾기

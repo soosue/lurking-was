@@ -1,4 +1,4 @@
-package webserver;
+package webserver.request;
 
 import com.google.common.base.Objects;
 
