@@ -24,8 +24,10 @@ public class RequestHandler implements Runnable {
 
         try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
             // TODO 사용자 요청에 대한 처리는 이 곳에 구현하면 된다.
-            RequestProcessor requestProcessor = RequestProcessorFactory.requestProcessor(in, out);
-            requestProcessor.process();
+//            RequestProcessor requestProcessor = RequestProcessorFactory.requestProcessor(in, out);
+//            requestProcessor.process();
+            HttpRequest request = new HttpRequest(in);
+
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
