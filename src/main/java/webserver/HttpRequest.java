@@ -41,8 +41,10 @@ public class HttpRequest {
 
     private void parseBody(BufferedReader br) throws IOException {
         if ("POST".equals(method)) {
-            String body = br.readLine();
-            params = parseQueryString(body);
+            int contentLength = Integer.parseInt(headers.get("Content-Length"));
+            char[] body = new char[contentLength];
+            br.read(body, 0, contentLength);
+            params = parseQueryString(String.valueOf(body));
         }
     }
 
@@ -83,7 +85,11 @@ public class HttpRequest {
         String[] paramTokens = params.split("&");
         for (String paramToken : paramTokens) {
             String[] tokens = paramToken.split("=");
-            paramMap.put(tokens[0], tokens[1].trim());
+            if (tokens.length > 1) {
+                paramMap.put(tokens[0], tokens[1].trim());
+            } else {
+                paramMap.put(tokens[0], "");
+            }
         }
 
         return paramMap;
@@ -107,5 +113,9 @@ public class HttpRequest {
 
     public String getVersion() {
         return version;
+    }
+
+    public boolean isPost() {
+        return "POST".equals(method);
     }
 }

@@ -27,7 +27,10 @@ public class RequestHandler implements Runnable {
 //            RequestProcessor requestProcessor = RequestProcessorFactory.requestProcessor(in, out);
 //            requestProcessor.process();
             HttpRequest request = new HttpRequest(in);
+            HttpResponse response = new HttpResponse(out);
 
+            Controller controller = RequestMapping.getController(request);
+            controller.service(request, response);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
