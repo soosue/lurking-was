@@ -1,6 +1,7 @@
 package webserver;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -23,12 +24,29 @@ class HttpSessionTest {
         assertThatNoException();
     }
 
+    @DisplayName("setAttribute, getAttribute, removeAttribute 메서드를 테스트 한다.")
     @Test
-    void setAndGetAttribute() {
+    void attributeTest() {
         String value = "soosue";
         session.setAttribute("id", value);
 
         Object getValue = session.getAttribute("id");
         assertThat(value).isEqualTo(getValue);
+
+        session.removeAttribute("id");
+
+        getValue = session.getAttribute("id");
+        assertThat(getValue).isNull();
+    }
+
+    @Test
+    void invalidate() {
+        session.setAttribute("id", "soosue");
+        session.setAttribute("name", "yoonsoo");
+
+        session.invalidate();
+
+        assertThat(session.getAttribute("id")).isNull();
+        assertThat(session.getAttribute("name")).isNull();
     }
 }
