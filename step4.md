@@ -1,24 +1,9 @@
-### Step1: TDD 실습
+### Step4: 세션 구현
 
-- [ ] 요구사항 1 - GET 요청
-    - HTTP GET 요청에 대한 RequestLine을 파싱한다.
-    - 파싱하는 로직 구현을 TDD로 구현한다.
-    - 예를 들어 "GET /users HTTP/1.1"을 파싱하면 다음과 같은 결과를 얻을 수 있어야 한다.
-        - method는 GET
-        - path는 /users
-        - protocol은 HTTP
-        - version은 1.1
-- [ ] 요구사항 2 - POST 요청
-    - HTTP POST 요청에 대한 RequestLine을 파싱한다.
-    - 파싱하는 로직 구현을 TDD로 구현한다.
-    - 예를 들어 "POST /users HTTP/1.1"을 파싱하면 다음과 같은 결과를 얻을 수 있어야 한다.
-        - method는 POST
-        - path는 /users
-        - protocol은 HTTP
-        - version은 1.1
-- [ ] 요구사항 3 - Query String 파싱
-    - HTTP 요청(request)의 Query String으로 전달되는 데이터를 파싱한다.
-    - 클라이언트에서 서버로 전달되는 데이터의 구조는 name1=value1&name2=value2와 같은 구조로 전달된다.
-    - 파싱하는 로직 구현을 TDD로 구현한다.
-- [ ] 요구사항 4 - enum 적용(선택)
-    - HTTP method인 GET, POST를 enum으로 구현한다.
+서블릿에서 지원하는 HttpSession API의 일부를 구현해보자.
+
+- String getId(): 현재 세션에 할당되어 있는 고유한 세션 아이디를 반환
+- void setAttribute(String name, Object value): 현재 세션에 value 인자로 전달되는 객체를 name 인자 이름으로 저장
+- Object getAttribute(String name): 현재 세션에 name 인자로 저장되어 있는 객체 값을 찾아 반환
+- void removeAttribute(String name): 현재 세션에 name 인자로 저장되어 있는 객체 값을 삭제
+- void invalidate(): 현재 세션에 저장되어 있는 모든 값을 삭제
